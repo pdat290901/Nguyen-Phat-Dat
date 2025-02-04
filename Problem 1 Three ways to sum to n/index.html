@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Tổng từ 1 đến n</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Tính Tổng từ 1 đến n</h2>
+        <label for="numberInput">Nhập số n:</label>
+        <input type="number" id="numberInput" min="1" value="5">
+        <button onclick="calculateSum()">Tính tổng</button>
+        
+        <h3>Kết quả:</h3>
+        <p><strong>Công thức toán học:</strong> <span id="resultA"></span></p>
+        <p><strong>Vòng lặp:</strong> <span id="resultB"></span></p>
+        <p><strong>Đệ quy:</strong> <span id="resultC"></span></p>
+    </div>
+
+    <script>
+        function sum_to_n_a(n) {
+            return (n * (n + 1)) / 2;
+        }
+
+        function sum_to_n_b(n) {
+            let sum = 0;
+            for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+
+        function sum_to_n_c(n) {
+            if (n <= 0) return 0;
+            return n + sum_to_n_c(n - 1);
+        }
+
+        function calculateSum() {
+            let n = parseInt(document.getElementById("numberInput").value);
+            if (isNaN(n) || n < 1) {
+                alert("Vui lòng nhập số nguyên dương!");
+                return;
+            }
+
+            document.getElementById("resultA").textContent = sum_to_n_a(n);
+            document.getElementById("resultB").textContent = sum_to_n_b(n);
+            document.getElementById("resultC").textContent = sum_to_n_c(n);
+        }
+    </script>
+</body>
+</html>
